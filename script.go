@@ -8,9 +8,13 @@ import (
 	"strings"
 )
 
+var fileToReadFrom = "files/results.txt"
+var fileToWriteTo = "results/records.csv"
+var fileSeparator = " "
+
 func main() {
-	txt := readTxt("files/results.txt")
-	writeCsv(txt, "results/records.csv", " ")
+	txt := readTxt(fileToReadFrom)
+	writeCsv(txt, fileToWriteTo, fileSeparator)
 }
 
 func readTxt(filename string) []string {
@@ -37,10 +41,7 @@ func readTxt(filename string) []string {
 }
 
 func writeCsv(textToWrite []string, filename string, fileSeparator string) {
-	records := textToWrite
-
 	file, err := os.Create(filename)
-
 	defer file.Close()
 
 	if err != nil {
@@ -50,7 +51,7 @@ func writeCsv(textToWrite []string, filename string, fileSeparator string) {
 	w := csv.NewWriter(file)
 	defer w.Flush()
 
-	for _, record := range records {
+	for _, record := range textToWrite {
 		row := strings.Split(record, fileSeparator)
 		if err := w.Write(row); err != nil {
 			log.Fatalln("error writing record to file", err)
