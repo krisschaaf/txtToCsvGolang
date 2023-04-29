@@ -51,8 +51,9 @@ func writeCsv(textToWrite []string, filename string, fileSeparator string) {
 	w := csv.NewWriter(file)
 	defer w.Flush()
 
-	for _, record := range textToWrite {
-		row := strings.Split(record, fileSeparator)
+	for i := 0; i < len(textToWrite); i++ {
+		row := strings.Split(textToWrite[i], fileSeparator)[1:] //delete first element of each entry
+
 		if err := w.Write(row); err != nil {
 			log.Fatalln("error writing record to file", err)
 		}
