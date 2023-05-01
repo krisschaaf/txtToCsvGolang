@@ -9,7 +9,7 @@ import (
 )
 
 var fileToReadFrom = "files/hipercontracer.txt"
-var fileToWriteTo = "results/hipercontracer.csv"
+var fileToWriteTo = "plot/hipercontracer.csv"
 var fileSeparator = " "
 
 func main() {
@@ -52,7 +52,7 @@ func writeCsv(textToWrite []string, filename string, fileSeparator string) {
 	defer w.Flush()
 
 	for i := 0; i < len(textToWrite); i++ {
-		row := strings.Split(textToWrite[i], fileSeparator)[1:] //delete first element of each entry
+		row := strings.Split(textToWrite[i], fileSeparator)[1:5] //delete first element of each entry
 
 		if err := w.Write(row); err != nil {
 			log.Fatalln("error writing record to file", err)
