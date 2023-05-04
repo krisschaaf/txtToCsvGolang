@@ -8,8 +8,8 @@ import (
 	"strings"
 )
 
-var fileToReadFrom = "files/hipercontracer.txt"
-var fileToWriteTo = "plot/hipercontracer.csv"
+var fileToReadFrom = "files/p2data.txt"
+var fileToWriteTo = "plot/p2data.csv"
 var fileSeparator = " "
 
 func main() {
